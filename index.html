@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VGU Canteen Survey — Referral Leaderboard</title>
+<title>VGU Canteen Survey - Referral Leaderboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -116,6 +116,36 @@
     line-height: 1.6;
   }
   .notice-box strong { color: var(--gold); }
+
+  .event-details {
+    max-width: 680px;
+    margin: 14px auto 0;
+    padding: 0 16px;
+  }
+  .event-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+  }
+  .event-detail {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .event-detail-label {
+    font-size: 10px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+  .event-detail-value {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.45;
+  }
+  .event-detail-value strong { color: var(--gold); }
 
   /* ── MAIN LAYOUT ── */
   .container {
@@ -307,7 +337,7 @@
 <div class="hero">
   <div class="hero-eyebrow">VGU Canteen AI Study</div>
   <h1>REFERRAL <span>BOARD</span></h1>
-  <p class="hero-sub">Share your Student ID as a referral code. Every friend who fills the survey using your ID earns you a point. Top 5 win cash prizes.</p>
+  <p class="hero-sub">Share your Student ID as a referral code. Every friend who fills the survey using your ID earns you a point. The event runs on weekdays during lunch from June 1 to June 30. Top 5 win cash prizes.</p>
 
   <div class="prizes-strip">
     <div class="prize-chip p1"><span class="medal">🥇</span> 1st — 500,000 VND</div>
@@ -321,7 +351,29 @@
 <!-- FAIRNESS NOTICE -->
 <div class="notice">
   <div class="notice-box">
-    <strong>⚠️ Fair Play Notice:</strong> Our system automatically detects and discards duplicate submissions. Only one valid submission per person per day is counted toward scores.
+    <strong>⚠️ Fair Play Notice:</strong> Our system automatically detects and discards duplicate submissions. Only one valid lunch-time submission per person per weekday is counted toward scores.
+  </div>
+</div>
+
+<!-- EVENT DETAILS -->
+<div class="event-details">
+  <div class="event-details-grid">
+    <div class="event-detail">
+      <div class="event-detail-label">Event Period</div>
+      <div class="event-detail-value"><strong>June 1–30</strong>, weekdays only</div>
+    </div>
+    <div class="event-detail">
+      <div class="event-detail-label">Counting Window</div>
+      <div class="event-detail-value">Only valid <strong>lunch-time</strong> submissions are counted. Saturdays and Sundays are excluded.</div>
+    </div>
+    <div class="event-detail">
+      <div class="event-detail-label">Ranking Update</div>
+      <div class="event-detail-value">Leaderboard rankings update daily at <strong>9:00 PM UTC+7</strong>.</div>
+    </div>
+    <div class="event-detail">
+      <div class="event-detail-label">Prize Claim</div>
+      <div class="event-detail-value">Winners must email bank information to <strong>10622012@student.vgu.edu.vn</strong> using their VGU email.</div>
+    </div>
   </div>
 </div>
 
@@ -352,14 +404,14 @@
     <div class="how-card">
       <div class="how-icon">🏆</div>
       <h3>Win Cash Prizes</h3>
-      <p>Top 5 on the leaderboard at the end of the study period receive cash rewards.</p>
+      <p>Top 5 on the leaderboard at the end of the study period receive cash rewards. Winners must claim prizes by emailing bank information from their VGU email.</p>
     </div>
   </div>
 </div>
 
 <div class="updated-bar">
   <span class="live-dot"></span>
-  Scores update daily after data verification &nbsp;·&nbsp; Last updated: <span id="lastUpdated">—</span>
+  Rankings update daily at 9:00 PM UTC+7 after data verification &nbsp;·&nbsp; Last updated: <span id="lastUpdated">—</span>
 </div>
 
 <script>
