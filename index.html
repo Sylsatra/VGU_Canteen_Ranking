@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VGU Canteen Survey — Referral Leaderboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:   #F5C842;
+    --silver: #B8C4CC;
+    --bronze: #CD7F45;
+    --rank4:  #7EC8A4;
+    --rank5:  #7EB8C8;
+    --bg:     #0D1117;
+    --surface: #161B22;
+    --border:  #21262D;
+    --text:    #E6EDF3;
+    --muted:   #8B949E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding: 0 0 60px;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO BANNER ── */
+  .hero {
+    background: linear-gradient(135deg, #1a2332 0%, #0d1117 60%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, rgba(245,200,66,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 8vw, 72px);
+    letter-spacing: 2px;
+    line-height: 1;
+    color: var(--text);
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  /* ── PRIZES STRIP ── */
+  .prizes-strip {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 24px 16px 0;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .prize-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .prize-chip .medal { font-size: 16px; }
+  .prize-chip.p1 { background: rgba(245,200,66,0.1);  border-color: rgba(245,200,66,0.4);  color: var(--gold);   }
+  .prize-chip.p2 { background: rgba(184,196,204,0.1); border-color: rgba(184,196,204,0.4); color: var(--silver); }
+  .prize-chip.p3 { background: rgba(205,127,69,0.1);  border-color: rgba(205,127,69,0.4);  color: var(--bronze); }
+  .prize-chip.p4 { background: rgba(126,200,164,0.1); border-color: rgba(126,200,164,0.4); color: var(--rank4);  }
+  .prize-chip.p5 { background: rgba(126,184,200,0.1); border-color: rgba(126,184,200,0.4); color: var(--rank5);  }
+
+  /* ── NOTICE BOX ── */
+  .notice {
+    max-width: 680px;
+    margin: 28px auto 0;
+    padding: 0 16px;
+  }
+  .notice-box {
+    background: rgba(245,200,66,0.05);
+    border: 1px solid rgba(245,200,66,0.2);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #c9aa3a;
+    line-height: 1.6;
+  }
+  .notice-box strong { color: var(--gold); }
+
+  /* ── MAIN LAYOUT ── */
+  .container {
+    max-width: 720px;
+    margin: 40px auto 0;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* ── RANK CARD ── */
+  .rank-card {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .rank-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    border-radius: 14px 0 0 14px;
+  }
+  .rank-card:hover { transform: translateX(4px); box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+
+  .rank-card.r1 { border-color: rgba(245,200,66,0.3);  background: linear-gradient(90deg, rgba(245,200,66,0.07) 0%, var(--surface) 50%); }
+  .rank-card.r1::before { background: var(--gold); }
+  .rank-card.r2 { border-color: rgba(184,196,204,0.25); background: linear-gradient(90deg, rgba(184,196,204,0.06) 0%, var(--surface) 50%); }
+  .rank-card.r2::before { background: var(--silver); }
+  .rank-card.r3 { border-color: rgba(205,127,69,0.25);  background: linear-gradient(90deg, rgba(205,127,69,0.06) 0%, var(--surface) 50%); }
+  .rank-card.r3::before { background: var(--bronze); }
+  .rank-card.r4::before { background: var(--rank4); }
+  .rank-card.r5::before { background: var(--rank5); }
+
+  .rank-badge {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+  }
+  .r1 .rank-badge { background: rgba(245,200,66,0.15); color: var(--gold); }
+  .r2 .rank-badge { background: rgba(184,196,204,0.12); color: var(--silver); }
+  .r3 .rank-badge { background: rgba(205,127,69,0.12); color: var(--bronze); }
+  .r4 .rank-badge { background: rgba(126,200,164,0.10); color: var(--rank4); }
+  .r5 .rank-badge { background: rgba(126,184,200,0.10); color: var(--rank5); }
+
+  .rank-info { min-width: 0; }
+  .rank-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .rank-id {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+    font-family: monospace;
+    letter-spacing: 0.5px;
+  }
+  .rank-meta {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .meta-pill {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.06);
+    color: var(--muted);
+  }
+  .meta-pill.own { color: #7EC8A4; background: rgba(126,200,164,0.10); }
+  .meta-pill.ref { color: #7EB8C8; background: rgba(126,184,200,0.10); }
+
+  .rank-right { text-align: right; flex-shrink: 0; }
+  .score-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    line-height: 1;
+  }
+  .r1 .score-num { color: var(--gold); }
+  .r2 .score-num { color: var(--silver); }
+  .r3 .score-num { color: var(--bronze); }
+  .r4 .score-num { color: var(--rank4); }
+  .r5 .score-num { color: var(--rank5); }
+  .score-label {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+  .prize-label {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .r1 .prize-label { color: var(--gold); }
+  .r2 .prize-label { color: var(--silver); }
+  .r3 .prize-label { color: var(--bronze); }
+  .r4 .prize-label { color: var(--rank4); }
+  .r5 .prize-label { color: var(--rank5); }
+
+  /* ── EMPTY STATE ── */
+  .empty-card {
+    grid-template-columns: 60px 1fr;
+  }
+  .empty-name { color: var(--muted); font-style: italic; font-size: 14px; }
+
+  /* ── HOW IT WORKS ── */
+  .how-section {
+    max-width: 720px;
+    margin: 40px auto 0;
+    padding: 0 16px;
+  }
+  .how-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .how-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .how-icon { font-size: 24px; margin-bottom: 10px; }
+  .how-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .how-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── LAST UPDATED ── */
+  .updated-bar {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 32px;
+    padding: 0 16px;
+  }
+  .live-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    background: #3fb950;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ── ENTRY ANIMATION ── */
+  .rank-card { opacity: 0; animation: slideIn 0.4s forwards; }
+  .rank-card:nth-child(1) { animation-delay: 0.05s; }
+  .rank-card:nth-child(2) { animation-delay: 0.10s; }
+  .rank-card:nth-child(3) { animation-delay: 0.15s; }
+  .rank-card:nth-child(4) { animation-delay: 0.20s; }
+  .rank-card:nth-child(5) { animation-delay: 0.25s; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">VGU Canteen AI Study</div>
+  <h1>REFERRAL <span>BOARD</span></h1>
+  <p class="hero-sub">Share your Student ID as a referral code. Every friend who fills the survey using your ID earns you a point. Top 5 win cash prizes.</p>
+
+  <div class="prizes-strip">
+    <div class="prize-chip p1"><span class="medal">🥇</span> 1st — 500,000 VND</div>
+    <div class="prize-chip p2"><span class="medal">🥈</span> 2nd — 300,000 VND</div>
+    <div class="prize-chip p3"><span class="medal">🥉</span> 3rd — 150,000 VND</div>
+    <div class="prize-chip p4"><span class="medal">4️⃣</span> 4th — 100,000 VND</div>
+    <div class="prize-chip p5"><span class="medal">5️⃣</span> 5th — 50,000 VND</div>
+  </div>
+</div>
+
+<!-- FAIRNESS NOTICE -->
+<div class="notice">
+  <div class="notice-box">
+    <strong>⚠️ Fair Play Notice:</strong> Our system automatically detects and discards duplicate submissions. Only one valid submission per person per day is counted toward scores.
+  </div>
+</div>
+
+<!-- LEADERBOARD -->
+<div class="container" id="leaderboard">
+  <!-- Rendered by JS -->
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-section">
+  <div class="how-title">HOW IT WORKS</div>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-icon">📋</div>
+      <h3>Fill the Survey</h3>
+      <p>Complete the lunch survey once per day. Each valid submission earns you 1 point.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-icon">🔗</div>
+      <h3>Share Your ID</h3>
+      <p>Tell friends to enter your Student ID in the Referral Code field when they fill out the form.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-icon">⬆️</div>
+      <h3>Earn Referral Points</h3>
+      <p>Every valid submission that uses your ID as a referral code adds 1 point to your score.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-icon">🏆</div>
+      <h3>Win Cash Prizes</h3>
+      <p>Top 5 on the leaderboard at the end of the study period receive cash rewards.</p>
+    </div>
+  </div>
+</div>
+
+<div class="updated-bar">
+  <span class="live-dot"></span>
+  Scores update daily after data verification &nbsp;·&nbsp; Last updated: <span id="lastUpdated">—</span>
+</div>
+
+<script>
+// ── SAMPLE DATA ─────────────────────────────────────────────────────────────
+// Replace this array with real data pulled from your Jotform export or API.
+// Each entry: { name, studentId, ownSubmissions, referralPoints }
+// score = ownSubmissions + referralPoints
+const data = [
+  // Uncomment and replace with real entries once collection starts:
+  // { name: "Nguyen Van A",  studentId: "10621001", ownSubmissions: 14, referralPoints: 22 },
+  // { name: "Tran Thi B",   studentId: "10621045", ownSubmissions: 12, referralPoints: 18 },
+  // { name: "Le Minh C",    studentId: "10622089", ownSubmissions: 11, referralPoints: 15 },
+  // { name: "Pham Duc D",   studentId: "10621203", ownSubmissions: 10, referralPoints: 9  },
+  // { name: "Hoang Thi E",  studentId: "10622312", ownSubmissions: 9,  referralPoints: 7  },
+];
+
+const PRIZES = ["500,000 VND", "300,000 VND", "150,000 VND", "100,000 VND", "50,000 VND"];
+const MEDALS = ["🥇", "🥈", "🥉", "4", "5"];
+const RANK_CLASS = ["r1","r2","r3","r4","r5"];
+
+function renderLeaderboard() {
+  const board = document.getElementById("leaderboard");
+
+  // Sort by total score descending
+  const sorted = [...data]
+    .map(d => ({ ...d, score: d.ownSubmissions + d.referralPoints }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5);
+
+  // Pad to 5 slots
+  while (sorted.length < 5) sorted.push(null);
+
+  board.innerHTML = sorted.map((entry, i) => {
+    const rc = RANK_CLASS[i];
+    const medal = MEDALS[i];
+    const prize = PRIZES[i];
+
+    if (!entry) {
+      return `
+        <div class="rank-card ${rc} empty-card">
+          <div class="rank-badge">${medal}</div>
+          <div class="rank-info">
+            <div class="rank-name empty-name">No entry yet</div>
+            <div class="rank-id">—</div>
+          </div>
+        </div>`;
+    }
+
+    return `
+      <div class="rank-card ${rc}">
+        <div class="rank-badge">${medal}</div>
+        <div class="rank-info">
+          <div class="rank-name">${entry.name}</div>
+          <div class="rank-id">${entry.studentId}</div>
+          <div class="rank-meta">
+            <span class="meta-pill own">✔ ${entry.ownSubmissions} own</span>
+            <span class="meta-pill ref">↑ ${entry.referralPoints} referrals</span>
+          </div>
+        </div>
+        <div class="rank-right">
+          <div class="score-num">${entry.score}</div>
+          <div class="score-label">points</div>
+          <div class="prize-label">${prize}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  document.getElementById("lastUpdated").textContent =
+    new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+}
+
+renderLeaderboard();
+</script>
+</body>
+</html>
