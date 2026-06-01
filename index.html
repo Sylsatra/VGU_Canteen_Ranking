@@ -30,7 +30,6 @@
     overflow-x: hidden;
   }
 
-  /* ── HERO BANNER ── */
   .hero {
     background: linear-gradient(135deg, #1a2332 0%, #0d1117 60%);
     border-bottom: 1px solid var(--border);
@@ -39,14 +38,19 @@
     position: relative;
     overflow: hidden;
   }
+
   .hero::before {
     content: '';
     position: absolute;
-    top: -60px; left: 50%; transform: translateX(-50%);
-    width: 500px; height: 300px;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 300px;
     background: radial-gradient(ellipse, rgba(245,200,66,0.08) 0%, transparent 70%);
     pointer-events: none;
   }
+
   .hero-eyebrow {
     font-size: 11px;
     letter-spacing: 3px;
@@ -54,6 +58,7 @@
     color: var(--gold);
     margin-bottom: 10px;
   }
+
   .hero h1 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(42px, 8vw, 72px);
@@ -61,7 +66,9 @@
     line-height: 1;
     color: var(--text);
   }
+
   .hero h1 span { color: var(--gold); }
+
   .hero-sub {
     margin-top: 12px;
     font-size: 14px;
@@ -72,7 +79,6 @@
     line-height: 1.6;
   }
 
-  /* ── PRIZES STRIP ── */
   .prizes-strip {
     display: flex;
     justify-content: center;
@@ -82,6 +88,7 @@
     max-width: 700px;
     margin: 0 auto;
   }
+
   .prize-chip {
     display: flex;
     align-items: center;
@@ -93,6 +100,7 @@
     border: 1px solid;
     white-space: nowrap;
   }
+
   .prize-chip .medal { font-size: 16px; }
   .prize-chip.p1 { background: rgba(245,200,66,0.1);  border-color: rgba(245,200,66,0.4);  color: var(--gold);   }
   .prize-chip.p2 { background: rgba(184,196,204,0.1); border-color: rgba(184,196,204,0.4); color: var(--silver); }
@@ -100,12 +108,12 @@
   .prize-chip.p4 { background: rgba(126,200,164,0.1); border-color: rgba(126,200,164,0.4); color: var(--rank4);  }
   .prize-chip.p5 { background: rgba(126,184,200,0.1); border-color: rgba(126,184,200,0.4); color: var(--rank5);  }
 
-  /* ── NOTICE BOX ── */
   .notice {
     max-width: 680px;
     margin: 28px auto 0;
     padding: 0 16px;
   }
+
   .notice-box {
     background: rgba(245,200,66,0.05);
     border: 1px solid rgba(245,200,66,0.2);
@@ -115,24 +123,123 @@
     color: #c9aa3a;
     line-height: 1.6;
   }
+
   .notice-box strong { color: var(--gold); }
+
+  .survey-access {
+    max-width: 680px;
+    margin: 18px auto 0;
+    padding: 0 16px;
+  }
+
+  .survey-access-card {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 18px;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(245,200,66,0.08), var(--surface) 55%);
+    border: 1px solid rgba(245,200,66,0.22);
+    border-radius: 14px;
+    padding: 18px;
+  }
+
+  .survey-qr-wrap {
+    background: #fff;
+    border-radius: 12px;
+    padding: 10px;
+    border: 1px solid rgba(245,200,66,0.35);
+  }
+
+  .survey-qr {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  .survey-access-label {
+    font-size: 10px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .survey-access-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .survey-access-text {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+
+  .survey-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--bg);
+    background: var(--gold);
+    border: 1px solid rgba(245,200,66,0.5);
+    border-radius: 999px;
+    padding: 9px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .survey-url {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    word-break: break-all;
+    font-family: monospace;
+  }
+
+  .survey-url a {
+    color: var(--silver);
+    text-decoration: none;
+  }
+
+  .survey-url a:hover { text-decoration: underline; }
+
+  @media (max-width: 560px) {
+    .survey-access-card {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .survey-qr-wrap {
+      max-width: 190px;
+      margin: 0 auto;
+    }
+  }
 
   .event-details {
     max-width: 680px;
     margin: 14px auto 0;
     padding: 0 16px;
   }
+
   .event-details-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 10px;
   }
+
   .event-detail {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 12px 14px;
   }
+
   .event-detail-label {
     font-size: 10px;
     letter-spacing: 1.4px;
@@ -140,14 +247,15 @@
     color: var(--muted);
     margin-bottom: 5px;
   }
+
   .event-detail-value {
     font-size: 13px;
     color: var(--text);
     line-height: 1.45;
   }
+
   .event-detail-value strong { color: var(--gold); }
 
-  /* ── MAIN LAYOUT ── */
   .container {
     max-width: 720px;
     margin: 40px auto 0;
@@ -157,7 +265,6 @@
     gap: 12px;
   }
 
-  /* ── RANK CARD ── */
   .rank-card {
     display: grid;
     grid-template-columns: 60px 1fr auto;
@@ -171,31 +278,56 @@
     position: relative;
     overflow: hidden;
   }
+
   .rank-card::before {
     content: '';
     position: absolute;
-    left: 0; top: 0; bottom: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
     width: 4px;
     border-radius: 14px 0 0 14px;
   }
-  .rank-card:hover { transform: translateX(4px); box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
 
-  .rank-card.r1 { border-color: rgba(245,200,66,0.3);  background: linear-gradient(90deg, rgba(245,200,66,0.07) 0%, var(--surface) 50%); }
+  .rank-card:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  }
+
+  .rank-card.r1 {
+    border-color: rgba(245,200,66,0.3);
+    background: linear-gradient(90deg, rgba(245,200,66,0.07) 0%, var(--surface) 50%);
+  }
+
   .rank-card.r1::before { background: var(--gold); }
-  .rank-card.r2 { border-color: rgba(184,196,204,0.25); background: linear-gradient(90deg, rgba(184,196,204,0.06) 0%, var(--surface) 50%); }
+
+  .rank-card.r2 {
+    border-color: rgba(184,196,204,0.25);
+    background: linear-gradient(90deg, rgba(184,196,204,0.06) 0%, var(--surface) 50%);
+  }
+
   .rank-card.r2::before { background: var(--silver); }
-  .rank-card.r3 { border-color: rgba(205,127,69,0.25);  background: linear-gradient(90deg, rgba(205,127,69,0.06) 0%, var(--surface) 50%); }
+
+  .rank-card.r3 {
+    border-color: rgba(205,127,69,0.25);
+    background: linear-gradient(90deg, rgba(205,127,69,0.06) 0%, var(--surface) 50%);
+  }
+
   .rank-card.r3::before { background: var(--bronze); }
   .rank-card.r4::before { background: var(--rank4); }
   .rank-card.r5::before { background: var(--rank5); }
 
   .rank-badge {
-    width: 48px; height: 48px;
+    width: 48px;
+    height: 48px;
     border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
   }
+
   .r1 .rank-badge { background: rgba(245,200,66,0.15); color: var(--gold); }
   .r2 .rank-badge { background: rgba(184,196,204,0.12); color: var(--silver); }
   .r3 .rank-badge { background: rgba(205,127,69,0.12); color: var(--bronze); }
@@ -203,6 +335,7 @@
   .r5 .rank-badge { background: rgba(126,184,200,0.10); color: var(--rank5); }
 
   .rank-info { min-width: 0; }
+
   .rank-name {
     font-weight: 600;
     font-size: 16px;
@@ -211,6 +344,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   .rank-id {
     font-size: 12px;
     color: var(--muted);
@@ -218,12 +352,14 @@
     font-family: monospace;
     letter-spacing: 0.5px;
   }
+
   .rank-meta {
     display: flex;
     gap: 10px;
     margin-top: 6px;
     flex-wrap: wrap;
   }
+
   .meta-pill {
     font-size: 11px;
     padding: 2px 8px;
@@ -231,20 +367,29 @@
     background: rgba(255,255,255,0.06);
     color: var(--muted);
   }
-  .meta-pill.own { color: #7EC8A4; background: rgba(126,200,164,0.10); }
-  .meta-pill.ref { color: #7EB8C8; background: rgba(126,184,200,0.10); }
 
-  .rank-right { text-align: right; flex-shrink: 0; }
+  .meta-pill.ref {
+    color: #7EB8C8;
+    background: rgba(126,184,200,0.10);
+  }
+
+  .rank-right {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
   .score-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 28px;
     line-height: 1;
   }
+
   .r1 .score-num { color: var(--gold); }
   .r2 .score-num { color: var(--silver); }
   .r3 .score-num { color: var(--bronze); }
   .r4 .score-num { color: var(--rank4); }
   .r5 .score-num { color: var(--rank5); }
+
   .score-label {
     font-size: 10px;
     color: var(--muted);
@@ -252,29 +397,35 @@
     letter-spacing: 1px;
     margin-top: 2px;
   }
+
   .prize-label {
     font-size: 12px;
     font-weight: 600;
     margin-top: 4px;
   }
+
   .r1 .prize-label { color: var(--gold); }
   .r2 .prize-label { color: var(--silver); }
   .r3 .prize-label { color: var(--bronze); }
   .r4 .prize-label { color: var(--rank4); }
   .r5 .prize-label { color: var(--rank5); }
 
-  /* ── EMPTY STATE ── */
   .empty-card {
     grid-template-columns: 60px 1fr;
   }
-  .empty-name { color: var(--muted); font-style: italic; font-size: 14px; }
 
-  /* ── HOW IT WORKS ── */
+  .empty-name {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 14px;
+  }
+
   .how-section {
     max-width: 720px;
     margin: 40px auto 0;
     padding: 0 16px;
   }
+
   .how-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
@@ -282,22 +433,37 @@
     color: var(--muted);
     margin-bottom: 14px;
   }
+
   .how-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 12px;
   }
+
   .how-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 18px;
   }
-  .how-icon { font-size: 24px; margin-bottom: 10px; }
-  .how-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-  .how-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
 
-  /* ── LAST UPDATED ── */
+  .how-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .how-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .how-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
   .updated-bar {
     text-align: center;
     font-size: 12px;
@@ -305,26 +471,33 @@
     margin-top: 32px;
     padding: 0 16px;
   }
+
   .live-dot {
     display: inline-block;
-    width: 7px; height: 7px;
+    width: 7px;
+    height: 7px;
     background: #3fb950;
     border-radius: 50%;
     margin-right: 6px;
     animation: pulse 2s infinite;
   }
+
   @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.3; }
   }
 
-  /* ── ENTRY ANIMATION ── */
-  .rank-card { opacity: 0; animation: slideIn 0.4s forwards; }
+  .rank-card {
+    opacity: 0;
+    animation: slideIn 0.4s forwards;
+  }
+
   .rank-card:nth-child(1) { animation-delay: 0.05s; }
   .rank-card:nth-child(2) { animation-delay: 0.10s; }
   .rank-card:nth-child(3) { animation-delay: 0.15s; }
   .rank-card:nth-child(4) { animation-delay: 0.20s; }
   .rank-card:nth-child(5) { animation-delay: 0.25s; }
+
   @keyframes slideIn {
     from { opacity: 0; transform: translateY(12px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -333,11 +506,13 @@
 </head>
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-eyebrow">VGU Canteen AI Study</div>
   <h1>REFERRAL <span>BOARD</span></h1>
-  <p class="hero-sub">Share your Student ID as a referral code. Every friend who fills the survey using your ID earns you a point. The event runs on weekdays during lunch from June 1 to June 30. Top 5 win cash prizes.</p>
+  <p class="hero-sub">
+    Share your Student ID as a referral code. Every valid friend submission using your ID earns you a referral point.
+    The event runs on weekdays during lunch from June 1 to June 30. Top 5 win cash prizes.
+  </p>
 
   <div class="prizes-strip">
     <div class="prize-chip p1"><span class="medal">🥇</span> 1st — 500,000 VND</div>
@@ -348,14 +523,34 @@
   </div>
 </div>
 
-<!-- FAIRNESS NOTICE -->
 <div class="notice">
   <div class="notice-box">
-    <strong>⚠️ Fair Play Notice:</strong> Our system automatically detects and discards duplicate submissions. Only one valid lunch-time submission per person per weekday is counted toward scores.
+    <strong>⚠️ Fair Play Notice:</strong>
+    Only valid lunch-time submissions are counted toward referral points. Duplicate or invalid submissions may be removed during data verification.
   </div>
 </div>
 
-<!-- EVENT DETAILS -->
+<div class="survey-access">
+  <div class="survey-access-card">
+    <div class="survey-qr-wrap">
+      <img class="survey-qr" src="assets/survey_qr.png" alt="QR code linking to the VGU Canteen AI Study lunch survey">
+    </div>
+    <div class="survey-access-info">
+      <div class="survey-access-label">Survey Link</div>
+      <div class="survey-access-title">SCAN TO JOIN</div>
+      <p class="survey-access-text">
+        Fill the lunch survey during the valid lunch window. To earn referral points, ask friends to enter your Student ID in the Referral Code field.
+      </p>
+      <a class="survey-link" href="https://www.jotform.com/261471798799077" target="_blank" rel="noopener noreferrer">Open Survey ↗</a>
+      <div class="survey-url">
+        <a href="https://www.jotform.com/261471798799077" target="_blank" rel="noopener noreferrer">
+          https://www.jotform.com/261471798799077
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="event-details">
   <div class="event-details-grid">
     <div class="event-detail">
@@ -377,19 +572,17 @@
   </div>
 </div>
 
-<!-- LEADERBOARD -->
 <div class="container" id="leaderboard">
   <!-- Rendered by JS -->
 </div>
 
-<!-- HOW IT WORKS -->
 <div class="how-section">
   <div class="how-title">HOW IT WORKS</div>
   <div class="how-grid">
     <div class="how-card">
       <div class="how-icon">📋</div>
       <h3>Fill the Survey</h3>
-      <p>Complete the lunch survey once per day. Each valid submission earns you 1 point.</p>
+      <p>Complete the lunch survey during the valid lunch window.</p>
     </div>
     <div class="how-card">
       <div class="how-icon">🔗</div>
@@ -399,7 +592,7 @@
     <div class="how-card">
       <div class="how-icon">⬆️</div>
       <h3>Earn Referral Points</h3>
-      <p>Every valid submission that uses your ID as a referral code adds 1 point to your score.</p>
+      <p>Every valid submission that uses your ID as a referral code adds 1 referral point to your score.</p>
     </div>
     <div class="how-card">
       <div class="how-icon">🏆</div>
@@ -415,33 +608,38 @@
 </div>
 
 <script>
-// ── SAMPLE DATA ─────────────────────────────────────────────────────────────
-// Replace this array with real data pulled from your Jotform export or API.
-// Each entry: { name, studentId, ownSubmissions, referralPoints }
-// score = ownSubmissions + referralPoints
+// Replace this array with the latest output from your ranking Python app.
+// Each entry: { name, studentId, referralPoints }
+// score = referralPoints
 const data = [
-  // Uncomment and replace with real entries once collection starts:
-  // { name: "Nguyen Van A",  studentId: "10621001", ownSubmissions: 14, referralPoints: 22 },
-  // { name: "Tran Thi B",   studentId: "10621045", ownSubmissions: 12, referralPoints: 18 },
-  // { name: "Le Minh C",    studentId: "10622089", ownSubmissions: 11, referralPoints: 15 },
-  // { name: "Pham Duc D",   studentId: "10621203", ownSubmissions: 10, referralPoints: 9  },
-  // { name: "Hoang Thi E",  studentId: "10622312", ownSubmissions: 9,  referralPoints: 7  },
+  { name: "", studentId: "10623066", referralPoints: 2 },
+  { name: "", studentId: "10322032", referralPoints: 1 },
+  { name: "", studentId: "10322038", referralPoints: 1 },
+  { name: "", studentId: "10425042", referralPoints: 1 },
+  { name: "", studentId: "10525046", referralPoints: 1 },
 ];
 
 const PRIZES = ["500,000 VND", "300,000 VND", "150,000 VND", "100,000 VND", "50,000 VND"];
 const MEDALS = ["🥇", "🥈", "🥉", "4", "5"];
-const RANK_CLASS = ["r1","r2","r3","r4","r5"];
+const RANK_CLASS = ["r1", "r2", "r3", "r4", "r5"];
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
 function renderLeaderboard() {
   const board = document.getElementById("leaderboard");
 
-  // Sort by total score descending
   const sorted = [...data]
-    .map(d => ({ ...d, score: d.ownSubmissions + d.referralPoints }))
+    .map(d => ({ ...d, score: Number(d.referralPoints) || 0 }))
     .sort((a, b) => b.score - a.score)
     .slice(0, 5);
 
-  // Pad to 5 slots
   while (sorted.length < 5) sorted.push(null);
 
   board.innerHTML = sorted.map((entry, i) => {
@@ -460,14 +658,15 @@ function renderLeaderboard() {
         </div>`;
     }
 
+    const displayName = entry.name && entry.name.trim() !== "" ? escapeHtml(entry.name) : "Anonymous participant";
+
     return `
       <div class="rank-card ${rc}">
         <div class="rank-badge">${medal}</div>
         <div class="rank-info">
-          <div class="rank-name">${entry.name}</div>
-          <div class="rank-id">${entry.studentId}</div>
+          <div class="rank-name">${displayName}</div>
+          <div class="rank-id">${escapeHtml(entry.studentId)}</div>
           <div class="rank-meta">
-            <span class="meta-pill own">✔ ${entry.ownSubmissions} own</span>
             <span class="meta-pill ref">↑ ${entry.referralPoints} referrals</span>
           </div>
         </div>
@@ -477,10 +676,14 @@ function renderLeaderboard() {
           <div class="prize-label">${prize}</div>
         </div>
       </div>`;
-  }).join('');
+  }).join("");
 
   document.getElementById("lastUpdated").textContent =
-    new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+    new Date().toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric"
+    });
 }
 
 renderLeaderboard();
